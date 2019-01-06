@@ -2,7 +2,7 @@
 
 * {
 	font-family: "Eurostile LT Std Medium", "Eurostile LT Std", sans-serif;
-	font-size: 10px;
+	font-size: 12px;
 }
 h1 {
 	font-size: 20px;
@@ -11,10 +11,10 @@ h2 {
 	font-size: 18px;
 }
 h3 {
-	font-size: 15px;
+	font-size: 16px;
 }
 h4 {
-	font-size: 12px;
+	font-size: 14px;
 }
 h1, h2, h3, h4 {
 	font-family: "ArchiType", "Eurostile LT Std Medium", "Eurostile LT Std", sans-serif;
@@ -37,6 +37,12 @@ ol.upper-roman {
 .active {
 	display: block;
 }
+.swn-section h3 {
+	border: 1px solid #cccccc;
+	border-width: 0 0 1px 0;
+	text-transform: uppercase;
+	width: 100%;
+}
 .swn-section-steps * {
 	font-size: 14px;
 }
@@ -52,5 +58,12 @@ ol.upper-roman {
 }
 .swn-attr-label {
 	font-weight: 800;
+	text-align: center;
 	text-transform: uppercase;
+}
+.swn-attr-modifier {
+	text-align: center;
+}
+.swn-attr-score {
+	text-align: center;
 }

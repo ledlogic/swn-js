@@ -39,6 +39,53 @@ swn.cmds = {
 		swn.render.attributes();
 	},
 	attributesAssign: function() {
-		alert(3);
+		$(".swn-cmd-attributes-roll button").addClass("swn-hidden");
+		
+		// render attributes selector
+		swn.render.attributesSelect();
+	},
+	/**
+	 * attributeSelect: if the user selects the array option, they can select attributes from an array
+	 */
+	attributeSelect: function() {
+		var $that = $(this);
+		var attr = $that.data("swn-attr");
+		var value = parseInt($that.val(), 10);
+		var modifier = value === 0 ? "" : swn.render.signed(swn.math.modifier(value));
+		
+		console.log(["attr",attr]);
+		console.log(["value",value]);
+
+		// show previous option in other selects
+		var prevValue = swn.attrs[attr];
+		var $showOpts = $(".swn-cmd-attr-select").find("option[value=" + prevValue + "]");
+		console.log(["$showOpts", $showOpts]);
+		$showOpts.show();
+
+		// set new value
+		swn.attrs[attr] = value;	
+		
+		$(".swn-attr-modifier[data-swn-attr=" + attr + "]").html(modifier);
+
+		if (value != 0) {
+			var $hideOpts = $(".swn-cmd-attr-select").not("[data-swn-attr=" + attr + "]").find("option[value=" + value + "]");
+			$hideOpts.hide();
+		}
+		
+		if (swn.cmds.attributesSelectComplete()) {
+			$(".swn-cmd-attr-accept").removeClass("swn-hidden");
+		}
+	},
+	attributesSelectComplete: function() {
+		for (attr in swn.attrs) {
+			var a = swn.attrs[attr];
+			if (a === 0) {
+				return false;
+			}
+		}
+		return true;
+	},
+	attributeSelectAccept: function() {
+		$(".swn-cmd-attr-accept").addClass("swn-hidden");
 	}
 };
