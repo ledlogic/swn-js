@@ -1,0 +1,56 @@
+/* Base Styles */
+
+* {
+	font-family: "Eurostile LT Std Medium", "Eurostile LT Std", sans-serif;
+	font-size: 10px;
+}
+h1 {
+	font-size: 20px;
+}
+h2 {
+	font-size: 18px;
+}
+h3 {
+	font-size: 15px;
+}
+h4 {
+	font-size: 12px;
+}
+h1, h2, h3, h4 {
+	font-family: "ArchiType", "Eurostile LT Std Medium", "Eurostile LT Std", sans-serif;
+}
+ol.upper-latin {
+	list-style-type: upper-latin;
+}
+ol.upper-roman {
+	list-style-type: upper-roman;
+}
+
+/* SWN */
+
+.swn-section {
+	border: 1px solid #cccccc;	
+}
+.swn-hidden {
+	display: none;	
+}
+.active {
+	display: block;
+}
+.swn-section-steps * {
+	font-size: 14px;
+}
+.swn-cmd button {
+	color: #009900;
+	font-size: 14px;
+}
+.swn-cmd.swn-status-completed button {
+	color: #000099;
+}
+.swn-attr-table {
+	width: 100%;
+}
+.swn-attr-label {
+	font-weight: 800;
+	text-transform: uppercase;
+}

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Material Design for Bootstrap fonts and icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+
+    <!-- Material Design for Bootstrap CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+    
+    <!-- SWN CSS -->
+    <link rel="stylesheet" href="css/swn.css" />
+
+    <title>SWN - Charsheet</title>
+  </head>
+  <body>
+  	<div class="container-fluid">
+	  	<div class="row flex-xl-no-wrap swn-charsheet">
+		    <div class="col-12 col-md-3 col-xl-2 bd-sidebar swn-section swn-section-steps">
+		    	<h3>Steps
+		    		<span class="swn-cmd swn-cmd-reset"><button>Reset</button></span>
+		    	</h3>
+		    	<ol class="upper-roman">
+		    		<li class="swn-cmd-attributes">Select attributes
+			    		<ol class="upper-latin">
+			    			<li class="swn-cmd swn-cmd-attributes-roll">
+			    				<button>Roll attributes</button>
+			    				<div class="swn-attributes-rolling swn-hidden">Rolling attributes</div>
+			    				<div class="swn-attributes-override swn-hidden">Override attribute
+			    					<span class="swn-attributes-attribute-override"></span></div>
+			    			</li>
+			    			<li class="swn-cmd swn-cmd-attributes-assign">
+			    				<button>Select array</button>
+			    			</li>
+			    		</ol>
+		    		</li>
+		    	</ol>		    	
+		    </div>
+	    	<main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">
+			    <h1 class="bd-title">SWN Character Sheet</h1>
+		    	<div class="swn-section swn-attributes col-3 swn-hidden"></div>
+	    	</main>
+	  	</div>
+  	</div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
+    <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
+    
+    <!-- SWN JS -->
+    <script src="js/swn.js"></script>    
+    <script src="js/swn-cmd.js"></script>    
+    <script src="js/swn-math.js"></script>    
+    <script src="js/swn-render.js"></script>    
+  </body>
+</html>
