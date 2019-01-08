@@ -28,14 +28,11 @@ ol.upper-roman {
 
 /* SWN */
 
-.swn-section {
-	border: 1px solid #cccccc;	
-}
 .swn-hidden {
 	display: none;	
 }
-.active {
-	display: block;
+.swn-section {
+	border: 1px solid #cccccc;	
 }
 .swn-section h3 {
 	border: 1px solid #cccccc;
@@ -46,13 +43,23 @@ ol.upper-roman {
 .swn-section-steps * {
 	font-size: 14px;
 }
-.swn-cmd button {
+.swn-section-steps li.swn-cmd div {
+	margin-left: 6px;
+}
+.swn-section-steps .swn-cmd button {
 	color: #009900;
 	font-size: 14px;
 }
-.swn-cmd.swn-status-completed button {
-	color: #000099;
+.swn-section-steps .swn-cmd-description {
+	font-style: italic;
 }
+.swn-disabled {
+	background: transparent;
+	border: 1px solid white;
+	color: #cccccc;
+}
+
+/* attributes */
 .swn-attr-table {
 	width: 100%;
 }
@@ -66,4 +73,12 @@ ol.upper-roman {
 }
 .swn-attr-score {
 	text-align: center;
+}
+
+/* basics */
+.swn-basics-table {
+	width: 100%;
+}
+.swn-basics-table td {
+	width: 50%;
 }

@@ -28,19 +28,33 @@
 			    		<ol class="upper-latin">
 			    			<li class="swn-cmd swn-cmd-attributes-roll">
 			    				<button>Roll attributes</button>
-			    				<div class="swn-attributes-rolling swn-hidden">Rolling attributes</div>
-			    				<div class="swn-attributes-override swn-hidden">Override attribute
+			    				<div class="swn-attributes-rolling swn-hidden swn-cmd-description">Rolling attributes</div>
+			    				<div class="swn-attributes-overriding swn-hidden swn-cmd-description">Override attribute
 			    					<span class="swn-attributes-attribute-override"></span></div>
 			    			</li>
 			    			<li class="swn-cmd swn-cmd-attributes-assign">
-			    				<button>Select array</button>
+			    				<button>Select attributes</button>
+			    				<div class="swn-attributes-assigning swn-hidden swn-cmd-description">Assigning attributes</div>
 			    			</li>
 			    		</ol>
 		    		</li>
+		    		<li class="swn-cmd-background swn-hidden">Select background
+			    		<ol class="upper-latin">
+			    			<li class="swn-cmd swn-cmd-background-roll">
+			    				<button>Roll background</button>
+			    				<div class="swn-background-rolling swn-hidden swn-cmd-description">Rolling background
+			    					<span class="swn-background"></span></div>
+			    			</li>
+			    			<li class="swn-cmd swn-cmd-background-assign">
+			    				<button>Select background</button>
+			    			</li>
+			    		</ol>
+			    	</li>
 		    	</ol>		    	
 		    </div>
 	    	<main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">
 			    <h1 class="bd-title">SWN Character Sheet</h1>
+		    	<div class="swn-section swn-basics col-6 swn-hidden"></div>
 		    	<div class="swn-section swn-attributes col-6 swn-hidden"></div>
 	    	</main>
 	  	</div>
@@ -51,11 +65,13 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
     <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
     
     <!-- SWN JS -->
     <script src="js/swn.js"></script>    
-    <script src="js/swn-cmd.js"></script>    
+    <script src="js/swn-backgrounds.js"></script>    
+    <script src="js/swn-cmds.js"></script>    
     <script src="js/swn-math.js"></script>    
     <script src="js/swn-render.js"></script>    
   </body>

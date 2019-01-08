@@ -18,13 +18,10 @@ var swn = {
 	    14, 12, 11, 10, 9, 7
 	],
 	/* attrOverridden: user has option to override one attribute when rolling. */
-	attrOverridden: false,	
+	attrOverridden: false,
+	background: null,
+	
 	init: function() {
-		swn.initCmds();
-	},
-	initCmds: function() {
-		$(".swn-cmd-reset").on("click", swn.cmds.reset);
-		$(".swn-cmd-attributes-roll button:first-of-type").on("click", swn.cmds.attributesRoll);
-		$(".swn-cmd-attributes-assign button:first-of-type").on("click", swn.cmds.attributesAssign);
+		swn.cmds.init();
 	}
 };

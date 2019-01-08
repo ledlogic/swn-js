@@ -1,4 +1,16 @@
+/* SWN Render */
+
 swn.render = {
+	/* general rendering methods */
+	signed: function(n) {
+		var ret = n;
+		if (n > 0) {
+			n = "+" + n;
+		}
+		return n;
+	},
+	
+	/* attribute rendering methods */
 	attributes: function() {
 		var h=["<h3>Attributes"];
 		if (!swn.attrOverridden) {
@@ -26,7 +38,7 @@ swn.render = {
 		}
 		h[h.length]="</table>";
 		$(".swn-attributes").html("").append(h.join("\n"));
-		$(".swn-attributes").addClass("active");
+		$(".swn-attributes").removeClass("swn-hidden");
 		$(".swn-cmd-attr-override").on("click", swn.cmds.attributeOverride);
 	},
 	attributesSelect: function() {
@@ -61,15 +73,51 @@ swn.render = {
 		}
 		h[h.length]="</table>";
 		$(".swn-attributes").html("").append(h.join("\n"));
-		$(".swn-attributes").addClass("active");
+		$(".swn-attributes").removeClass("swn-hidden");
 		$(".swn-cmd-attr-select").on("change", swn.cmds.attributeSelect);
 		$(".swn-cmd-attr-accept").on("click", swn.cmds.attributeSelectAccept);
 	},
-	signed: function(n) {
-		var ret = n;
-		if (n > 0) {
-			n = "+" + n;
-		}
-		return n;
+	
+	/* basics rendering methods */
+	basics: function() {
+		var backgroundName = swn.backgrounds[swn.background].name;
+
+		var h=["<h3>Basics</h3>"];
+		h[h.length]="<table class=\"swn-basics-table\">";
+		h[h.length]="<tr>";
+		h[h.length]="<tr>";
+		h[h.length]="<td class=\"swn-attr-label\">Background</td>";
+		h[h.length]="<td>" + backgroundName + "</td>";
+		h[h.length]="</tr>";
+		h[h.length]="</table>";
+		$(".swn-basics").html("").append(h.join("\n"));
+		$(".swn-basics").removeClass("swn-hidden");
+		$(".swn-cmd-attr-override").on("click", swn.cmds.attributeOverride);		
+	},
+	basicsSelect: function() {
+		var s = ["<select class=\"browser-default custom-select swn-cmd-background-select\">"];
+		s[s.length] = "<option value=\"\"></option>";
+		
+		var keys = _.keys(swn.backgrounds);
+		_.each(keys, function(key) {
+			s[s.length] = "<option value=\"" + key + "\">" + swn.backgrounds[key].name + "</option>";
+		});
+		s[s.length] = "</select>";
+		s[s.length]="<span class=\"swn-cmd swn-cmd-background-accept\"><button>Accept</button></span>";
+		var select = s.join("");
+		
+		var h=["<h3>Basics</h3>"];
+		h[h.length]="<table class=\"swn-basics-table\">";
+		h[h.length]="<tr>";
+		h[h.length]="<tr>";
+		h[h.length]="<td class=\"swn-attr-label\">Background</td>";
+		h[h.length]="<td>" + select + "</td>";
+		h[h.length]="</tr>";
+		h[h.length]="</table>";
+		$(".swn-basics").html("").append(h.join("\n"));
+		$(".swn-basics").removeClass("swn-hidden");
+		
+		$(".swn-cmd-background-accept").on("click", swn.cmds.backgroundSelectAccept);		
 	}
+
 };

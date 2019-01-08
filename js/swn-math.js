@@ -1,3 +1,5 @@
+/* SWN Math */
+
 swn.math = {
 	die: function(qty, die, mod) {
 		var ret = mod;
@@ -19,5 +21,12 @@ swn.math = {
 			case attr == 18 : return 2;
 		}
 		return NaN;
+	},
+	background: function() {
+		var len = _.size(swn.backgrounds);
+		var b = swn.math.die(1, len, 0);
+		var keys = _.keys(swn.backgrounds);
+		var key = keys[b];
+		return key;
 	}
 };

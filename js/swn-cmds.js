@@ -1,6 +1,14 @@
 /* SWN Commands */
 
 swn.cmds = {
+	init : function() {
+		$(".swn-cmd-reset").on("click", swn.cmds.reset);
+		$(".swn-cmd-attributes-roll button:first-of-type").on("click", swn.cmds.attributesRoll);
+		$(".swn-cmd-attributes-assign button:first-of-type").on("click", swn.cmds.attributesAssign);
+		$(".swn-cmd-background-roll button:first-of-type").on("click", swn.cmds.backgroundRoll);
+		$(".swn-cmd-background-assign button:first-of-type").on("click", swn.cmds.backgroundAssign);
+	},
+	
 	/* global commands */
 	reset: function() {
 		window.location.reload();
@@ -8,6 +16,11 @@ swn.cmds = {
 
 	/* attribute commands */
 	attributesRoll: function() {
+		var $that = $(this);
+		if ($that.hasClass("swn-disabled")) {
+			return;
+		}
+		
 		// initialize display
 		$(".swn-attributes-rolling").removeClass("swn-hidden");
 		$(".swn-cmd-attributes-roll button:first-of-type").addClass("swn-disabled");
@@ -29,6 +42,11 @@ swn.cmds = {
 	 */
 	attributeOverride: function() {
 		var $that = $(this);
+		if ($that.hasClass("swn-disabled")) {
+			return;
+		}
+
+		var $that = $(this);
 		var attr = $that.data("swn-attr");
 		if (attr != "skip") {
 			swn.attrs[attr] = 14;
@@ -38,6 +56,11 @@ swn.cmds = {
 		swn.cmds.attributeSelectAccept();
 	},
 	attributesAssign: function() {
+		var $that = $(this);
+		if ($that.hasClass("swn-disabled")) {
+			return;
+		}
+
 		// initialize display
 		$(".swn-attributes-assigning").removeClass("swn-hidden");
 		$(".swn-cmd-attributes-roll button:first-of-type").addClass("swn-disabled");
@@ -51,6 +74,10 @@ swn.cmds = {
 	 */
 	attributeSelect: function() {
 		var $that = $(this);
+		if ($that.hasClass("swn-disabled")) {
+			return;
+		}
+
 		var attr = $that.data("swn-attr");
 		var value = parseInt($that.val(), 10);
 		var modifier = value === 0 ? "" : swn.render.signed(swn.math.modifier(value));
@@ -92,5 +119,57 @@ swn.cmds = {
 		swn.render.attributes();
 		
 		$(".swn-cmd-background").removeClass("swn-hidden");
+	},
+	
+	/* background commands */
+	
+	backgroundRoll: function() {
+		var $that = $(this);
+		if ($that.hasClass("swn-disabled")) {
+			return;
+		}
+		
+		// initialize display
+		$(".swn-background-rolling").removeClass("swn-hidden");
+		$(".swn-cmd-background-roll button:first-of-type").addClass("swn-disabled");
+		$(".swn-cmd-background-assign button:first-of-type").addClass("swn-disabled");
+		
+		// roll background
+		var b = swn.math.background();
+		swn.background = b;
+		
+		$(".swn-background").html("[" + b + "]");
+		
+		// render basics
+		swn.render.basics();
+	},
+	backgroundAssign: function() {
+		var $that = $(this);
+		if ($that.hasClass("swn-disabled")) {
+			return;
+		}
+
+		// initialize display
+		$(".swn-background-rolling").removeClass("swn-hidden");
+		$(".swn-cmd-background-roll button:first-of-type").addClass("swn-disabled");
+		$(".swn-cmd-background-assign button:first-of-type").addClass("swn-disabled");
+		
+		// render background selector
+		swn.render.basicsSelect();
+	},
+	backgroundSelectAccept: function() {
+		var $that = $(this);
+		if ($that.hasClass("swn-disabled")) {
+			return;
+		}
+		
+		// set background
+		var b = $(".swn-cmd-background-select").val();
+		swn.background = b;
+
+		// render basics
+		$(".swn-cmd-background-accept").addClass("swn-hidden");
+		$(".swn-cmd-background").removeClass("swn-hidden");
+		swn.render.basics();
 	}
 };
