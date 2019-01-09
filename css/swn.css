@@ -32,7 +32,9 @@ ol.upper-roman {
 	display: none;	
 }
 .swn-section {
-	border: 1px solid #cccccc;	
+	border: 1px solid #cccccc;
+	margin: 10px;
+	padding: 4px;
 }
 .swn-section h3 {
 	border: 1px solid #cccccc;
@@ -63,6 +65,9 @@ ol.upper-roman {
 .swn-attr-table {
 	width: 100%;
 }
+.swn-attr-table td {
+	border: 1px solid #ccc;
+}
 .swn-attr-label {
 	font-weight: 800;
 	text-align: center;
@@ -80,5 +85,38 @@ ol.upper-roman {
 	width: 100%;
 }
 .swn-basics-table td {
+	border: 1px solid #ccc;
 	width: 50%;
+}
+
+/* skills */
+.swn-skills-table {
+	width: 100%;
+}
+.swn-skills-table td {
+	border: 1px solid #ccc;
+	width: 50%;
+}
+.swn-skills-label {
+	font-weight: 800;
+	text-align: center;
+	text-transform: uppercase;
+}
+.swn-skill-rating {
+	text-align: center;
+}
+.swn-skill-rating-1 {
+	color: #ff0000;
+}
+.swn-skill-rating0 {
+	color: #000000;
+}
+.swn-skill-rating1 {
+	color: #00ff00;
+}
+.swn-skill-rating2 {
+	color: #0000cc;
+}
+.swn-skill-rating3,.swn-skill-rating4,.swn-skill-rating5,.swn-skill-rating6,.swn-skill-rating7,.swn-skill-rating8 {
+	color: #0000ff;
 }

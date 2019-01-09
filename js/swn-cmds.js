@@ -7,6 +7,7 @@ swn.cmds = {
 		$(".swn-cmd-attributes-assign button:first-of-type").on("click", swn.cmds.attributesAssign);
 		$(".swn-cmd-background-roll button:first-of-type").on("click", swn.cmds.backgroundRoll);
 		$(".swn-cmd-background-assign button:first-of-type").on("click", swn.cmds.backgroundAssign);
+		$(".swn-cmd-skills-quick button:first-of-type").on("click", swn.cmds.skillsQuick);
 	},
 	
 	/* global commands */
@@ -141,7 +142,12 @@ swn.cmds = {
 		$(".swn-background").html("[" + b + "]");
 		
 		// render basics
+		$(".swn-cmd-background-accept").addClass("swn-hidden");
+		$(".swn-cmd-background").removeClass("swn-hidden");
 		swn.render.basics();
+
+		$(".swn-cmd-skills").removeClass("swn-hidden");
+		$(".swn-cmd-skills-quick").removeClass("swn-hidden");
 	},
 	backgroundAssign: function() {
 		var $that = $(this);
@@ -171,5 +177,27 @@ swn.cmds = {
 		$(".swn-cmd-background-accept").addClass("swn-hidden");
 		$(".swn-cmd-background").removeClass("swn-hidden");
 		swn.render.basics();
+		
+		$(".swn-cmd-skills").removeClass("swn-hidden");
+		$(".swn-cmd-skills-quick").removeClass("swn-hidden");
+	},
+	
+	/* skills commands */
+	
+	skillsQuick: function() {
+		$(".swn-skills").removeClass("swn-hidden");
+		
+		var b = swn.background
+		var quick = swn.backgrounds[b].skills.quick;
+		for (var i=0; i<quick.length; i++) {
+			var quickSkill = quick[i];
+			var skill = swn.skills[quickSkill];
+			if (skill) {
+				skill.rating++;
+			}
+		}
+		
+		// render skills
+		swn.render.skills();
 	}
 };

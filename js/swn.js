@@ -23,5 +23,10 @@ var swn = {
 	
 	init: function() {
 		swn.cmds.init();
+		
+		// initialize skill ratings
+		_.each(swn.skills, function(skill) {
+			skill.rating = -1;
+		});
 	}
 };

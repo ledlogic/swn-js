@@ -23,7 +23,7 @@ swn.render = {
 		h[h.length]="<td class=\"swn-attr-label\">score</td>";
 		h[h.length]="<td class=\"swn-attr-label\">modifier</td>";
 		h[h.length]="<td class=\"swn-attr-label\"></td>";
-		for (attr in swn.attrs) {
+		for (var attr in swn.attrs) {
 			var score = swn.attrs[attr];
 			var modifier = swn.render.signed(swn.math.modifier(score));
 			
@@ -118,6 +118,27 @@ swn.render = {
 		$(".swn-basics").removeClass("swn-hidden");
 		
 		$(".swn-cmd-background-accept").on("click", swn.cmds.backgroundSelectAccept);		
+	},
+
+	/* skills rendering methods */
+	skills: function() {
+		var h=["<h3>Skills"];
+		h[h.length]="</h3>";
+		h[h.length]="<table class=\"swn-skills-table\">";
+		h[h.length]="<tr>";
+		h[h.length]="<td class=\"swn-skills-label\">Skill</td>";
+		h[h.length]="<td class=\"swn-skills-label\">Rating</td>";
+		_.each(swn.skills, function(skill) {
+			var skillName = skill.name;
+			var skillRating = swn.render.signed(skill.rating);
+			h[h.length]="<tr>";
+			h[h.length]="<td class=\"swn-skill-name\">" + skillName + "</td>";
+			h[h.length]="<td class=\"swn-skill-rating swn-skill-rating" + skillRating + "\">" + skillRating + "</td>";
+			h[h.length]="</tr>";
+		});
+		h[h.length]="</table>";
+		$(".swn-skills").html("").append(h.join("\n"));
+		$(".swn-skills").removeClass("swn-hidden");
 	}
 
 };
