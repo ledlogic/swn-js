@@ -185,6 +185,10 @@ swn.cmds = {
 	/* skills commands */
 	
 	skillsQuick: function() {
+		var $that = $(this);
+		if ($that.hasClass("swn-disabled")) {
+			return;
+		}
 		$(".swn-skills").removeClass("swn-hidden");
 		
 		var b = swn.background
@@ -199,5 +203,7 @@ swn.cmds = {
 		
 		// render skills
 		swn.render.skills();
+
+		$(".swn-cmd-skills-quick button:first-of-type").addClass("swn-disabled");
 	}
 };
