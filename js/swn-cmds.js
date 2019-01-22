@@ -8,6 +8,8 @@ swn.cmds = {
 		$(".swn-cmd-background-roll button:first-of-type").on("click", swn.cmds.backgroundRoll);
 		$(".swn-cmd-background-assign button:first-of-type").on("click", swn.cmds.backgroundAssign);
 		$(".swn-cmd-skills-quick button:first-of-type").on("click", swn.cmds.skillsQuick);
+		$(".swn-cmd-skills-pick button:first-of-type").on("click", swn.cmds.skillsPick);
+		$(".swn-cmd-skills-roll button:first-of-type").on("click", swn.cmds.skillsRoll);
 	},
 	
 	/* global commands */
@@ -185,9 +187,13 @@ swn.cmds = {
 	/* skills commands */
 	
 	skillsQuick: function() {
+		var $that = $(this);
+		if ($that.hasClass("swn-disabled")) {
+			return;
+		}
 		$(".swn-skills").removeClass("swn-hidden");
 		
-		var b = swn.background
+		var b = swn.background;
 		var quick = swn.backgrounds[b].skills.quick;
 		for (var i=0; i<quick.length; i++) {
 			var quickSkill = quick[i];
@@ -199,5 +205,92 @@ swn.cmds = {
 		
 		// render skills
 		swn.render.skills();
+		
+		$(".swn-cmd-skills-quick button:first-of-type").addClass("swn-disabled");
+		$(".swn-cmd-skills-pick button:first-of-type").addClass("swn-disabled");
+		$(".swn-cmd-skills-roll button:first-of-type").addClass("swn-disabled");
+	},
+	
+	skillsPick: function() {
+		var $that = $(this);
+		if ($that.hasClass("swn-disabled")) {
+			return;
+		}
+		$(".swn-skills").removeClass("swn-hidden");
+		
+		var b = swn.background;
+		var f = swn.backgrounds[b].skills.free;
+		swn.log("skillsPick, f[" + f + "]")
+		swn.cmds.increaseSkill(f);
+		
+		/*var growth = swn.backgrounds[b].skills.growth;
+		for (var i=0; i<growth.length; i++) {
+			var g = growth[i];
+			swn.log("skillsPick, g[" + g + "]");
+			swn.cmds.increaseSkill(g);
+		}*/
+		
+		// render skills
+		swn.render.skills();
+		
+		$(".swn-cmd-skills-quick button:first-of-type").addClass("swn-disabled");
+		$(".swn-cmd-skills-pick button:first-of-type").addClass("swn-disabled");
+		$(".swn-cmd-skills-roll button:first-of-type").addClass("swn-disabled");
+	},
+	
+	increaseSkill: function(s) {
+		swn.log("skillsPick, s[" + s + "]");
+		var skill = swn.skills[s];
+		if (skill) {
+			skill.rating++;
+		} else {
+			
+		}
+		
+		// any compbat = stab, shoot, or punch
+		// any stat
+		// any physical = strength, dexterity, constitution
+		// any mental = intelligence, wisdom, charisma
+	},
+	
+	skillsRoll: function() {
+		var $that = $(this);
+		if ($that.hasClass("swn-disabled")) {
+			return;
+		}
+		$(".swn-skills").removeClass("swn-hidden");
+		
+		var b = swn.background;
+		var f = swn.backgrounds[b].skills.free;
+		swn.log("skillsRoll, f[" + f + "]")
+		swn.cmds.increaseSkill(f);
+		
+		for (var i=0; i<3; i++) {
+			var p = swn.math.die(1, 2, 0);
+			switch (p) {
+				case 1:
+					var growth = swn.backgrounds[b].skills.growth;
+					var iGrowth = swn.math.die(1, growth.length, 0);
+					swn.log("skillsRoll, iGrowth[" + iGrowth + "]")
+					var g = growth[iGrowth];
+					swn.cmds.increaseSkill(g);
+					break;
+				case 2:
+					var learning = swn.backgrounds[b].skills.learning;
+					var iLearning = swn.math.die(1, learning.length, 0);
+					swn.log("skillsRoll, iLearning[" + iLearning + "]")
+					var g = learning[iLearning];
+					swn.cmds.increaseSkill(g);
+					break;
+			}
+		}
+		
+		// render skills
+		swn.render.skills();
+		
+		$(".swn-cmd-skills-quick button:first-of-type").addClass("swn-disabled");
+		$(".swn-cmd-skills-pick button:first-of-type").addClass("swn-disabled");
+		$(".swn-cmd-skills-roll button:first-of-type").addClass("swn-disabled");
 	}
+
 };

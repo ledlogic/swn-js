@@ -21,6 +21,12 @@ var swn = {
 	attrOverridden: false,
 	background: null,
 	
+	log: function(s) {
+		if (typeof(window.console) != "undefined") {
+			console.log(s);
+		}
+	},
+	
 	init: function() {
 		swn.cmds.init();
 		
