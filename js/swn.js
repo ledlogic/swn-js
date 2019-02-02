@@ -17,9 +17,13 @@ var swn = {
 	attrDefaults: [
 	    14, 12, 11, 10, 9, 7
 	],
+	
 	/* attrOverridden: user has option to override one attribute when rolling. */
 	attrOverridden: false,
+	/* background: swn background */
 	background: null,
+	/* name: swn character name */
+	name: null,
 	
 	log: function(s) {
 		if (typeof(window.console) != "undefined") {

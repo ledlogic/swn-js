@@ -28,6 +28,9 @@ ol.upper-roman {
 
 /* SWN */
 
+.swn-action {
+	margin: 4px 0 4px 0;
+}
 .swn-hidden {
 	display: none;	
 }

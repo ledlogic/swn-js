@@ -3,6 +3,8 @@
 swn.cmds = {
 	init : function() {
 		$(".swn-cmd-reset").on("click", swn.cmds.reset);
+		$(".swn-cmd-roll-classic button:first-of-type").on("click", swn.cmds.classicName);
+		$(".swn-cmd-roll-new button:first-of-type").on("click", swn.cmds.newName);
 		$(".swn-cmd-attributes-roll button:first-of-type").on("click", swn.cmds.attributesRoll);
 		$(".swn-cmd-attributes-assign button:first-of-type").on("click", swn.cmds.attributesAssign);
 		$(".swn-cmd-background-roll button:first-of-type").on("click", swn.cmds.backgroundRoll);
@@ -17,6 +19,55 @@ swn.cmds = {
 		window.location.reload();
 	},
 
+	/* name commands */
+	classicName: function() {
+		var $that = $(this);
+		if ($that.hasClass("swn-disabled")) {
+			return;
+		}
+		
+		// initialize display
+		$(".swn-cmd-roll-classic button:first-of-type").addClass("swn-disabled");
+		$(".swn-cmd-roll-new button:first-of-type").addClass("swn-disabled");
+		$(".swn-name-rolling").removeClass("swn-hidden");
+		
+		// gen name
+		var name = swn.math.genWeName();
+		console.log(["newName, name", name]);
+		swn.name = name;
+
+		$(".swn-name").html("[" + name + "]");
+		
+		// render basics
+		$(".swn-cmd-background-accept").addClass("swn-hidden");
+		$(".swn-cmd-background").removeClass("swn-hidden");
+		swn.render.basics();
+	},
+	
+	newName: function() {
+		var $that = $(this);
+		if ($that.hasClass("swn-disabled")) {
+			return;
+		}
+
+		// initialize display
+		$(".swn-cmd-roll-classic button:first-of-type").addClass("swn-disabled");
+		$(".swn-cmd-roll-new button:first-of-type").addClass("swn-disabled");
+		$(".swn-name-rolling").removeClass("swn-hidden");
+		
+		// gen name
+		var name = swn.math.genThxName();
+		console.log(["newName, name", name]);
+		swn.name = name;
+
+		$(".swn-name").html("[" + name + "]");
+		
+		// render basics
+		$(".swn-cmd-background-accept").addClass("swn-hidden");
+		$(".swn-cmd-background").removeClass("swn-hidden");
+		swn.render.basics();
+	},
+	
 	/* attribute commands */
 	attributesRoll: function() {
 		var $that = $(this);
