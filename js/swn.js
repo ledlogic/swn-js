@@ -32,11 +32,9 @@ var swn = {
 	},
 	
 	init: function() {
+		console.log("swn.init");
 		swn.cmds.init();
 		
-		// initialize skill ratings
-		_.each(swn.skills, function(skill) {
-			skill.rating = -1;
-		});
+		swn.skills.init();
 	}
 };

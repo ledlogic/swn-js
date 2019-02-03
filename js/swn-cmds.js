@@ -2,6 +2,8 @@
 
 swn.cmds = {
 	init : function() {
+		console.log("swn.cmds.init");
+
 		$(".swn-cmd-reset").on("click", swn.cmds.reset);
 		$(".swn-cmd-roll-classic button:first-of-type").on("click", swn.cmds.classicName);
 		$(".swn-cmd-roll-new button:first-of-type").on("click", swn.cmds.newName);
@@ -22,6 +24,8 @@ swn.cmds = {
 	/* name commands */
 	
 	classicName: function() {
+		console.log("swn.cmds.classicName");
+
 		var $that = $(this);
 		if ($that.hasClass("swn-disabled")) {
 			return;
@@ -46,6 +50,8 @@ swn.cmds = {
 	},
 	
 	newName: function() {
+		console.log("swn.cmds.newName");
+		
 		var $that = $(this);
 		if ($that.hasClass("swn-disabled")) {
 			return;
@@ -72,6 +78,8 @@ swn.cmds = {
 	/* attribute commands */
 	
 	attributesRoll: function() {
+		console.log("swn.cmds.attributesRoll");
+		
 		var $that = $(this);
 		if ($that.hasClass("swn-disabled")) {
 			return;
@@ -97,6 +105,8 @@ swn.cmds = {
 	 * set to 14.
 	 */
 	attributeOverride: function() {
+		console.log("swn.cmds.attributeOverride");
+
 		var $that = $(this);
 		if ($that.hasClass("swn-disabled")) {
 			return;
@@ -118,6 +128,8 @@ swn.cmds = {
 		$(".swn-cmd-attributes-assign button:first-of-type").addClass("swn-hidden");
 	},
 	attributesAssign: function() {
+		console.log("swn.cmds.attributesAssign");
+
 		var $that = $(this);
 		if ($that.hasClass("swn-disabled")) {
 			return;
@@ -135,6 +147,8 @@ swn.cmds = {
 	 * attributeSelect: if the user selects the array option, they can select attributes from an array
 	 */
 	attributeSelect: function() {
+		console.log("swn.cmds.attributeSelect");
+
 		var $that = $(this);
 		if ($that.hasClass("swn-disabled")) {
 			return;
@@ -173,6 +187,8 @@ swn.cmds = {
 		}
 	},
 	attributesSelectComplete: function() {
+		console.log("swn.cmds.attributesSelectComplete");
+
 		for (attr in swn.attrs) {
 			var a = swn.attrs[attr];
 			if (a === 0) {
@@ -182,6 +198,8 @@ swn.cmds = {
 		return true;
 	},
 	attributeSelectAccept: function() {
+		console.log("swn.cmds.attributeSelectAccept");
+
 		$(".swn-cmd-attr-accept").addClass("swn-hidden");
 		swn.render.attributes();
 	},
@@ -189,6 +207,8 @@ swn.cmds = {
 	/* background commands */
 	
 	backgroundRoll: function() {
+		console.log("swn.cmds.backgroundRoll");
+
 		var $that = $(this);
 		if ($that.hasClass("swn-disabled")) {
 			return;
@@ -220,6 +240,8 @@ swn.cmds = {
 		$(".swn-cmd-skills-quick").removeClass("swn-hidden");
 	},
 	backgroundAssign: function() {
+		console.log("swn.cmds.backgroundAssign");
+
 		var $that = $(this);
 		if ($that.hasClass("swn-disabled")) {
 			return;
@@ -233,6 +255,8 @@ swn.cmds = {
 		swn.render.basicsSelect();
 	},
 	backgroundSelectAccept: function() {
+		console.log("swn.cmds.backgroundSelectAccept");
+
 		var $that = $(this);
 		if ($that.hasClass("swn-disabled")) {
 			return;
@@ -258,6 +282,8 @@ swn.cmds = {
 	/* skills commands */
 	
 	skillsQuick: function() {
+		console.log("swn.cmds.skillsQuick");
+
 		var $that = $(this);
 		if ($that.hasClass("swn-disabled")) {
 			return;
@@ -267,11 +293,8 @@ swn.cmds = {
 		var b = swn.background;
 		var quick = swn.backgrounds[b].skills.quick;
 		for (var i=0; i<quick.length; i++) {
-			var quickSkill = quick[i];
-			var skill = swn.skills[quickSkill];
-			if (skill) {
-				skill.rating++;
-			}
+			var q = quick[i];
+			swn.skills.incr(q);
 		}
 		
 		// render skills
@@ -283,6 +306,8 @@ swn.cmds = {
 	},
 	
 	skillsPick: function() {
+		console.log("swn.cmds.skillsPick");
+
 		var $that = $(this);
 		if ($that.hasClass("swn-disabled")) {
 			return;
@@ -304,27 +329,13 @@ swn.cmds = {
 		// render skills
 		swn.render.skills();
 		
-		$(".swn-cmd-skills-quick button:first-of-type").addClass("swn-disabled");
-		$(".swn-cmd-skills-pick button:first-of-type").addClass("swn-disabled");
-		$(".swn-cmd-skills-roll button:first-of-type").addClass("swn-disabled");
+		//$(".swn-cmd-skills-quick button:first-of-type").addClass("swn-disabled");
+		//$(".swn-cmd-skills-pick button:first-of-type").addClass("swn-disabled");
+		//$(".swn-cmd-skills-roll button:first-of-type").addClass("swn-disabled");
 	},
-	
-	increaseSkill: function(s) {
-		swn.log("skillsPick, s[" + s + "]");
-		var skill = swn.skills[s];
-		if (skill) {
-			skill.rating++;
-		} else {
-			
-		}
 		
-		// any compbat = stab, shoot, or punch
-		// any stat
-		// any physical = strength, dexterity, constitution
-		// any mental = intelligence, wisdom, charisma
-	},
-	
 	skillsRoll: function() {
+		console.log("swn.cmds.skillsRoll");
 		var $that = $(this);
 		if ($that.hasClass("swn-disabled")) {
 			return;
@@ -334,7 +345,7 @@ swn.cmds = {
 		var b = swn.background;
 		var f = swn.backgrounds[b].skills.free;
 		swn.log("skillsRoll, f[" + f + "]")
-		swn.cmds.increaseSkill(f);
+		swn.skills.incr(f);
 		
 		for (var i=0; i<3; i++) {
 			var p = swn.math.die(1, 2, 0);
@@ -344,14 +355,14 @@ swn.cmds = {
 					var iGrowth = swn.math.die(1, growth.length, 0);
 					swn.log("skillsRoll, iGrowth[" + iGrowth + "]")
 					var g = growth[iGrowth];
-					swn.cmds.increaseSkill(g);
+					swn.skills.incr(g);
 					break;
 				case 2:
 					var learning = swn.backgrounds[b].skills.learning;
 					var iLearning = swn.math.die(1, learning.length, 0);
 					swn.log("skillsRoll, iLearning[" + iLearning + "]")
 					var g = learning[iLearning];
-					swn.cmds.increaseSkill(g);
+					swn.skills.incr(g);
 					break;
 			}
 		}
@@ -359,9 +370,34 @@ swn.cmds = {
 		// render skills
 		swn.render.skills();
 		
-		$(".swn-cmd-skills-quick button:first-of-type").addClass("swn-disabled");
-		$(".swn-cmd-skills-pick button:first-of-type").addClass("swn-disabled");
-		$(".swn-cmd-skills-roll button:first-of-type").addClass("swn-disabled");
+		//$(".swn-cmd-skills-quick > button:first-of-type").addClass("swn-disabled");
+		//$(".swn-cmd-skills-pick button:first-of-type").addClass("swn-disabled");
+		//$(".swn-cmd-skills-roll button:first-of-type").addClass("swn-disabled");
+	},
+	
+	skillIncr: function() {
+		console.log("swn.cmds.skillIncr");
+		var $that = $(this);
+		if ($that.hasClass("swn-disabled")) {
+			return;
+		}
+		
+		var quick = $that.data("quick");
+		console.log(["quick", quick]);
+		$("[data-quick=" + quick + "]").addClass("swn-hidden");
+		
+		var skill = $that.data("skill");
+		console.log(["skill", skill]);
+		swn.skills.incr(skill);
+		
+		// render skills
+		swn.render.skills();
+		
+		var len = $(".cmd-quick-incr").not(".swn-hidden");
+		if (!len) {
+			$(".swn-cmd-skills-quick button:first-of-type").addClass("swn-disabled");
+			$(".swn-cmd-skills-pick button:first-of-type").addClass("swn-disabled");
+			$(".swn-cmd-skills-roll button:first-of-type").addClass("swn-disabled");
+		}
 	}
-
 };

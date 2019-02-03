@@ -134,7 +134,7 @@ swn.render = {
 		h[h.length]="<tr>";
 		h[h.length]="<td class=\"swn-skills-label\">Skill</td>";
 		h[h.length]="<td class=\"swn-skills-label\">Rating</td>";
-		_.each(swn.skills, function(skill) {
+		_.each(swn.skills.data, function(skill) {
 			var skillName = skill.name;
 			var skillRating = swn.render.signed(skill.rating);
 			h[h.length]="<tr>";
