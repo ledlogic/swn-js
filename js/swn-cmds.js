@@ -20,6 +20,7 @@ swn.cmds = {
 	},
 
 	/* name commands */
+	
 	classicName: function() {
 		var $that = $(this);
 		if ($that.hasClass("swn-disabled")) {
@@ -33,15 +34,15 @@ swn.cmds = {
 		
 		// gen name
 		var name = swn.math.genWeName();
-		console.log(["newName, name", name]);
 		swn.name = name;
-
 		$(".swn-name").html("[" + name + "]");
 		
 		// render basics
-		$(".swn-cmd-background-accept").addClass("swn-hidden");
-		$(".swn-cmd-background").removeClass("swn-hidden");
 		swn.render.basics();
+
+		$(".swn-cmd-attributes").removeClass("swn-hidden");
+		$(".swn-cmd-roll-classic").addClass("swn-hidden");
+		$(".swn-cmd-roll-new").addClass("swn-hidden");
 	},
 	
 	newName: function() {
@@ -57,18 +58,19 @@ swn.cmds = {
 		
 		// gen name
 		var name = swn.math.genThxName();
-		console.log(["newName, name", name]);
 		swn.name = name;
-
 		$(".swn-name").html("[" + name + "]");
 		
 		// render basics
-		$(".swn-cmd-background-accept").addClass("swn-hidden");
-		$(".swn-cmd-background").removeClass("swn-hidden");
 		swn.render.basics();
+
+		$(".swn-cmd-attributes").removeClass("swn-hidden");
+		$(".swn-cmd-roll-classic").addClass("swn-hidden");
+		$(".swn-cmd-roll-new").addClass("swn-hidden");
 	},
-	
+		
 	/* attribute commands */
+	
 	attributesRoll: function() {
 		var $that = $(this);
 		if ($that.hasClass("swn-disabled")) {
@@ -88,7 +90,7 @@ swn.cmds = {
 		
 		// render attributes
 		swn.render.attributes();
-		$(".swn-attributes-overriding").removeClass("swn-hidden");
+		$(".swn-attributes").removeClass("swn-hidden");
 	},
 	/** 
 	 * attributeOverride: if the user selects the roll option, they can select one attribute to
@@ -107,7 +109,13 @@ swn.cmds = {
 		}
 		$(".swn-attributes-attribute-override").html("[" + attr + "]");
 		swn.attrOverridden = true;
-		swn.cmds.attributeSelectAccept();
+		
+		swn.render.attributes();
+		$(".swn-cmd-background").removeClass("swn-hidden");
+		$(".swn-attributes-assigning").addClass("swn-hidden");
+		$(".swn-attributes-assigned").removeClass("swn-hidden");
+		$(".swn-cmd-attributes-roll button:first-of-type").addClass("swn-hidden");
+		$(".swn-cmd-attributes-assign button:first-of-type").addClass("swn-hidden");
 	},
 	attributesAssign: function() {
 		var $that = $(this);
@@ -142,7 +150,7 @@ swn.cmds = {
 		// show previous option in other selects
 		var prevValue = swn.attrs[attr];
 		var $showOpts = $(".swn-cmd-attr-select").find("option[value=" + prevValue + "]");
-		console.log(["$showOpts", $showOpts]);
+		//console.log(["$showOpts", $showOpts]);
 		$showOpts.show();
 
 		// set new value
@@ -155,8 +163,13 @@ swn.cmds = {
 			$hideOpts.hide();
 		}
 		
+		// if all have been selected, show complete button
 		if (swn.cmds.attributesSelectComplete()) {
 			$(".swn-cmd-attr-accept").removeClass("swn-hidden");
+		} else {
+			if (!$(".swn-cmd-attr-accept").hasClass("swn-hidden")) {
+				$(".swn-cmd-attr-accept").addClass("swn-hidden");
+			}
 		}
 	},
 	attributesSelectComplete: function() {
@@ -171,8 +184,6 @@ swn.cmds = {
 	attributeSelectAccept: function() {
 		$(".swn-cmd-attr-accept").addClass("swn-hidden");
 		swn.render.attributes();
-		
-		$(".swn-cmd-background").removeClass("swn-hidden");
 	},
 	
 	/* background commands */
@@ -198,7 +209,13 @@ swn.cmds = {
 		$(".swn-cmd-background-accept").addClass("swn-hidden");
 		$(".swn-cmd-background").removeClass("swn-hidden");
 		swn.render.basics();
-
+		$(".swn-cmd-background-roll button:first-of-type").addClass("swn-hidden");
+		$(".swn-cmd-background-assign button:first-of-type").addClass("swn-hidden");
+		
+		$(".swn-background-rolled").removeClass("swn-hidden");
+		$(".swn-background-selected").addClass("swn-hidden");
+		$(".swn-cmd-background-assign").addClass("swn-hidden");
+		
 		$(".swn-cmd-skills").removeClass("swn-hidden");
 		$(".swn-cmd-skills-quick").removeClass("swn-hidden");
 	},
@@ -209,10 +226,9 @@ swn.cmds = {
 		}
 
 		// initialize display
-		$(".swn-background-rolling").removeClass("swn-hidden");
 		$(".swn-cmd-background-roll button:first-of-type").addClass("swn-disabled");
 		$(".swn-cmd-background-assign button:first-of-type").addClass("swn-disabled");
-		
+				
 		// render background selector
 		swn.render.basicsSelect();
 	},
@@ -231,6 +247,10 @@ swn.cmds = {
 		$(".swn-cmd-background").removeClass("swn-hidden");
 		swn.render.basics();
 		
+		$(".swn-background-rolling").addClass("swn-hidden");
+		$(".swn-background-rolled").addClass("swn-hidden");
+		$(".swn-background-selected").removeClass("swn-hidden");
+
 		$(".swn-cmd-skills").removeClass("swn-hidden");
 		$(".swn-cmd-skills-quick").removeClass("swn-hidden");
 	},

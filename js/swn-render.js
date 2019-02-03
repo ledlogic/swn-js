@@ -20,11 +20,11 @@ swn.render = {
 		h[h.length]="<tr>";
 		h[h.length]="<tr>";
 		h[h.length]="<td class=\"swn-attr-label\">Name</td>";
-		h[h.length]="<td class=\"swn-attr-value\">" + name + "</td>";
+		h[h.length]="<td class=\"swn-attr-score\">" + name + "</td>";
 		h[h.length]="</tr>";
 		if (backgroundName) {
 			h[h.length]="<td class=\"swn-attr-label\">Background</td>";
-			h[h.length]="<td class=\"swn-attr-value\">" + backgroundName + "</td>";
+			h[h.length]="<td class=\"swn-attr-score\">" + backgroundName + "</td>";
 			h[h.length]="</tr>";
 		}
 		h[h.length]="</table>";
