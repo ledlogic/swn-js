@@ -59,6 +59,7 @@ swn.skills = {
 	},
 	
 	quick: 0,
+	
 	init: function() {
 		console.log("swn.skills.init");
 
@@ -67,6 +68,7 @@ swn.skills = {
 			skill.rating = -1;
 		});
 	},
+	
 	incr: function(s) {
 		console.log("swn.skills.incr, s[" + s + "]");
 		
@@ -87,18 +89,26 @@ swn.skills = {
 			swn.log(["skill.rating",skill.rating]);
 		} else {
 			// not exact skill
-			swn.log(["not exact skill",skill]);
-			switch (skill) {
+			swn.log(["not exact skill",s]);
+			switch (s) {
 			    case "any combat":
+			    	swn.skills.incr("stab,shoot,punch");
+			    	break;
+			    case "any skill":
+			    	swn.skills.incr("stab,shoot,punch");
+			    	break;
+			    case "+1 any stat":
+			    	swn.attrs.incr("str,dex,con,int,wis,cha", 1);
+			    	break;
+			    case "+2 physical":
+			    	swn.attrs.incr("str,dex,con", 2);
+			    	break;
+			    case "+2 mental":
+			    	swn.attrs.incr("int,wis,cha", 2);
 			    	break;
 			    default:
 			    	swn.log("Unknown skill");
 			}			
 		}
-		
-		// any compbat = stab, shoot, or punch
-		// any stat
-		// any physical = strength, dexterity, constitution
-		// any mental = intelligence, wisdom, charisma
 	}
 };

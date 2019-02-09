@@ -91,9 +91,9 @@ swn.cmds = {
 		$(".swn-cmd-attributes-assign button:first-of-type").addClass("swn-disabled");
 		
 		// roll attributes
-		for (attr in swn.attrs) {
+		for (attr in swn.attrs.data) {
 			var a = swn.math.attr();
-			swn.attrs[attr] = a;
+			swn.attrs.data[attr] = a;
 		}
 		
 		// render attributes
@@ -115,10 +115,10 @@ swn.cmds = {
 		var $that = $(this);
 		var attr = $that.data("swn-attr");
 		if (attr != "skip") {
-			swn.attrs[attr] = 14;
+			swn.attrs.data[attr] = 14;
 		}
 		$(".swn-attributes-attribute-override").html("[" + attr + "]");
-		swn.attrOverridden = true;
+		swn.attrs.overridden = true;
 		
 		swn.render.attributes();
 		$(".swn-cmd-background").removeClass("swn-hidden");
@@ -162,13 +162,13 @@ swn.cmds = {
 		console.log(["value",value]);
 
 		// show previous option in other selects
-		var prevValue = swn.attrs[attr];
+		var prevValue = swn.attrs.data[attr];
 		var $showOpts = $(".swn-cmd-attr-select").find("option[value=" + prevValue + "]");
 		//console.log(["$showOpts", $showOpts]);
 		$showOpts.show();
 
 		// set new value
-		swn.attrs[attr] = value;	
+		swn.attrs.data[attr] = value;	
 		
 		$(".swn-attr-modifier[data-swn-attr=" + attr + "]").html(modifier);
 
@@ -189,8 +189,8 @@ swn.cmds = {
 	attributesSelectComplete: function() {
 		console.log("swn.cmds.attributesSelectComplete");
 
-		for (attr in swn.attrs) {
-			var a = swn.attrs[attr];
+		for (attr in swn.attrs.data) {
+			var a = swn.attrs.data[attr];
 			if (a === 0) {
 				return false;
 			}
@@ -201,6 +201,14 @@ swn.cmds = {
 		console.log("swn.cmds.attributeSelectAccept");
 
 		$(".swn-cmd-attr-accept").addClass("swn-hidden");
+		swn.render.attributes();
+	},
+	attributeIncr: function() {
+		console.log("swn.cmds.attributeIncr");
+		
+		var attr = $that.data("swn-attr");
+		var incr = parseInt($that.data("swn-incr"),10);
+		swn.attrs.data[attr]+=incr;
 		swn.render.attributes();
 	},
 	

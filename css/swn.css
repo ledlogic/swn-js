@@ -47,6 +47,7 @@ ol.upper-roman {
 }
 .swn-section-steps * {
 	font-size: 14px;
+	margin: 4px 0;
 }
 .swn-section-steps li.swn-cmd div {
 	margin-left: 6px;

@@ -61,7 +61,7 @@ swn.render = {
 	/* attribute rendering methods */
 	attributes: function() {
 		var h=["<h3>Attributes"];
-		if (!swn.attrOverridden) {
+		if (!swn.attrs.overridden) {
 			h[h.length]="<span class=\"swn-cmd swn-cmd-attr-override\" data-swn-attr=\"skip\"><button>Skip Override</button></span>";
 		}
 		h[h.length]="</h3>";
@@ -71,15 +71,15 @@ swn.render = {
 		h[h.length]="<td class=\"swn-attr-label\">score</td>";
 		h[h.length]="<td class=\"swn-attr-label\">modifier</td>";
 		h[h.length]="<td class=\"swn-attr-label\"></td>";
-		for (var attr in swn.attrs) {
-			var score = swn.attrs[attr];
+		for (var attr in swn.attrs.data) {
+			var score = swn.attrs.data[attr];
 			var modifier = swn.render.signed(swn.math.modifier(score));
 			
 			h[h.length]="<tr>";
 			h[h.length]="<td class=\"swn-attr-label\">" + attr + "</td>";
 			h[h.length]="<td class=\"swn-attr-score\">" + score + "</td>";
 			h[h.length]="<td class=\"swn-attr-modifier\">" + modifier + "</td>";			
-			if (!swn.attrOverridden && swn.attrs[attr] < 14) {
+			if (!swn.attrs.overridden && swn.attrs.data[attr] < 14) {
 				h[h.length]="<td><button class=\"swn-cmd-attr-override\" data-swn-attr=\"" + attr + "\">Set to 14?</button></td>";
 			}
 			h[h.length]="</tr>";
@@ -102,17 +102,17 @@ swn.render = {
 		h[h.length]="<td class=\"swn-attr-label\">modifier</td>";
 		h[h.length]="<td class=\"swn-attr-label\"></td>";
 		
-		for (var attr in swn.attrs) {
+		for (var attr in swn.attrs.data) {
 			var s = ["<select class=\"browser-default custom-select swn-cmd-attr-select\" data-swn-attr=\"" + attr + "\">"];
 			s[s.length] = "<option value=\"0\">?</option>";
-			for (var i=0; i < swn.attrDefaults.length; i++) {
-				var val = swn.attrDefaults[i];
+			for (var i=0; i < swn.attrs.defaults.length; i++) {
+				var val = swn.attrs.defaults[i];
 				s[s.length] = "<option value=\"" + val + "\">" + val + "</option>";
 			}
 			s[s.length] = "</select>";
 			var select = s.join("");
 
-			var score = swn.attrs[attr];			
+			var score = swn.attrs.data[attr];			
 			h[h.length]="<tr>";
 			h[h.length]="<td class=\"swn-attr-label\">" + attr + "</td>";
 			h[h.length]="<td class=\"swn-attr-score\">" + select + "</td>";
