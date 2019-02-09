@@ -1,7 +1,7 @@
 /* SWN Skills */
 
 swn.skills = {
-	data: {
+	data : {
 		"administer" : {
 			name : "Administer"
 		},
@@ -109,6 +109,19 @@ swn.skills = {
 			    default:
 			    	swn.log("Unknown skill");
 			}			
+		}
+	},
+	
+	checkComplete: function() {
+		var len = $(".cmd-quick-incr").not(".swn-hidden").length;
+		console.log(["len", len]);
+		if (!len) {
+			$(".swn-cmd-skills-quick").addClass("swn-hidden");
+			$(".swn-cmd-skills-pick").addClass("swn-hidden");
+			$(".swn-cmd-skills-roll").addClass("swn-hidden");
+			
+			$(".swn-cmd-skills-quick-choices").addClass("swn-hidden");
+			$(".swn-skills-selected").removeClass("swn-hidden");
 		}
 	}
 };

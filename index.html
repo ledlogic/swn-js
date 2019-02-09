@@ -33,7 +33,7 @@
 		    					<button class="swn-action">Roll new WE name</button>
 			    			</li>
 			    		</ol>
-	    				<div class="swn-name-rolling swn-hidden">Rolled name
+	    				<div class="swn-name-rolling swn-cmd-description swn-hidden">Rolled name
 	    					<span class="swn-name"></span></div>
 		    		</li>
 		    		<li class="swn-cmd-attributes swn-hidden">Select attributes
@@ -47,17 +47,15 @@
 			    			<li class="swn-cmd swn-cmd-attributes-assign">
 			    				<button class="swn-action">Select attributes</button>
 			    				<div class="swn-attributes-assigning swn-hidden swn-cmd-description">Assigning attributes</div>
-			    				<div class="swn-attributes-assigned swn-hidden swn-cmd-description">Assigned attributes</div>
 			    			</li>
 			    		</ol>
+	    				<div class="swn-attributes-assigned swn-hidden swn-cmd-description">Assigned attributes</div>
 		    		</li>
 		    		<li class="swn-cmd-background swn-hidden">Select background
 			    		<ol class="upper-latin">
 			    			<li class="swn-cmd swn-cmd-background-roll">
 			    				<button class="swn-action"n>Roll background</button>
 			    				<div class="swn-background-rolling swn-hidden swn-cmd-description">Rolling background</div>
-			    				<div class="swn-background-rolled swn-hidden swn-cmd-description">Rolled background
-			    					<span class="swn-background"></span></div>
 			    			</li>
 			    			<li class="swn-cmd swn-cmd-background-assign">
 			    				<button>Select background</button>
@@ -65,6 +63,10 @@
 			    					<span class="swn-background"></span></div>
 			    			</li>
 			    		</ol>
+	    				<div class="swn-background-rolled swn-hidden swn-cmd-description">Rolled background
+	    					<span class="swn-background"></span></div>
+	    				<div class="swn-background-selected swn-hidden swn-cmd-description">Selected background
+	    					<span class="swn-background"></span></div>
 			    	</li>
 		    		<li class="swn-cmd-skills swn-hidden">Select skills
 			    		<ol class="upper-latin">
@@ -80,14 +82,15 @@
 			    		</ol>
 	    				<div class="swn-cmd-skills-quick-choices swn-hidden">
 	    				</div>
+	    				<div class="swn-skills-selected swn-hidden swn-cmd-description">Selected skills</div>
 			    	</li>
 		    	</ol>		    	
 		    </div>
 	    	<main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">
 			    <h1 class="bd-title">SWN Character Sheet</h1>
-		    	<div class="swn-section swn-basics col-6 swn-hidden"></div>
-		    	<div class="swn-section swn-attributes col-6 swn-hidden"></div>
-		    	<div class="swn-section swn-skills col-6 swn-hidden"></div>
+		    	<div class="swn-section swn-basics col-9 swn-hidden"></div>
+		    	<div class="swn-section swn-attributes col-9 swn-hidden"></div>
+		    	<div class="swn-section swn-skills col-9 swn-hidden"></div>
 	    	</main>
 	  	</div>
   	</div>

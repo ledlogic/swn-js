@@ -28,6 +28,9 @@ ol.upper-roman {
 
 /* SWN */
 
+.swn-cmd-reset {
+	float: right;
+}
 .swn-action {
 	margin: 4px 0 4px 0;
 }
@@ -42,15 +45,25 @@ ol.upper-roman {
 .swn-section h3 {
 	border: 1px solid #cccccc;
 	border-width: 0 0 1px 0;
+	font-size: 20px;
+	height: 28px;
 	text-transform: uppercase;
 	width: 100%;
 }
-.swn-section-steps * {
+.swn-section div, .swn-section ol, .swn-section li {
 	font-size: 14px;
+} 
+.swn-section-steps h3 {
+	font-size: 22px;
+	height: 32px;
 	margin: 4px 0;
+	padding: 0px 4px 0 4px;
+}
+.swn-section-steps ol {
+	margin: 0 10px 0 10px;
 }
 .swn-section-steps li.swn-cmd div {
-	margin-left: 6px;
+	/*margin-left: 6px;*/
 }
 .swn-section-steps .swn-cmd button {
 	color: #009900;
@@ -63,6 +76,8 @@ ol.upper-roman {
 	background: transparent;
 	border: 1px solid white;
 	color: #cccccc;
+	margin: 0px;
+	padding: 1px;
 }
 
 /* attributes */
@@ -71,6 +86,7 @@ ol.upper-roman {
 }
 .swn-attr-table td {
 	border: 1px solid #ccc;
+	padding: 4px;
 }
 .swn-attr-label {
 	font-weight: 800;
@@ -83,6 +99,12 @@ ol.upper-roman {
 .swn-attr-score {
 	text-align: center;
 }
+.swn-cmd-attr-override {
+	float: right;
+}
+.swn-cmd-attr-accept {
+	float: right;
+}
 
 /* basics */
 .swn-basics-table {
@@ -92,6 +114,15 @@ ol.upper-roman {
 	border: 1px solid #ccc;
 	width: 50%;
 }
+.swn-basics-table select {
+	margin: 10px;
+	width: auto;
+}
+.swn-basics-table td {
+	border: 1px solid #ccc;
+	padding: 4px;
+}
+
 
 /* skills */
 .swn-skills-table {
@@ -99,7 +130,8 @@ ol.upper-roman {
 }
 .swn-skills-table td {
 	border: 1px solid #ccc;
-	width: 50%;
+	padding: 4px;
+	width: 50%;	
 }
 .swn-skills-label {
 	font-weight: 800;

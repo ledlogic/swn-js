@@ -7,17 +7,18 @@ $(document).ready(function() {
 var swn = {
 
 	/* background: swn background */
-	background: null,
+	background : null,
+
 	/* name: swn character name */
-	name: null,
-	
-	log: function(s) {
-		if (typeof(window.console) != "undefined") {
+	name : null,
+
+	log : function(s) {
+		if (typeof (window.console) != "undefined") {
 			console.log(s);
 		}
 	},
-	
-	init: function() {
+
+	init : function() {
 		console.log("swn.init");
 		swn.cmds.init();
 		swn.attrs.init();

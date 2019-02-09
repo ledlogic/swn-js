@@ -1,6 +1,7 @@
 /* SWN Commands */
 
 swn.cmds = {
+		
 	init : function() {
 		console.log("swn.cmds.init");
 
@@ -100,6 +101,7 @@ swn.cmds = {
 		swn.render.attributes();
 		$(".swn-attributes").removeClass("swn-hidden");
 	},
+	
 	/** 
 	 * attributeOverride: if the user selects the roll option, they can select one attribute to
 	 * set to 14.
@@ -123,10 +125,13 @@ swn.cmds = {
 		swn.render.attributes();
 		$(".swn-cmd-background").removeClass("swn-hidden");
 		$(".swn-attributes-assigning").addClass("swn-hidden");
+		$(".swn-cmd-attributes-roll").addClass("swn-hidden");
+		
 		$(".swn-attributes-assigned").removeClass("swn-hidden");
-		$(".swn-cmd-attributes-roll button:first-of-type").addClass("swn-hidden");
-		$(".swn-cmd-attributes-assign button:first-of-type").addClass("swn-hidden");
+		$(".swn-cmd-attributes-roll").addClass("swn-hidden");
+		$(".swn-cmd-attributes-assign").addClass("swn-hidden");
 	},
+	
 	attributesAssign: function() {
 		console.log("swn.cmds.attributesAssign");
 
@@ -143,6 +148,7 @@ swn.cmds = {
 		// render attributes selector
 		swn.render.attributesSelect();
 	},
+	
 	/**
 	 * attributeSelect: if the user selects the array option, they can select attributes from an array
 	 */
@@ -158,8 +164,8 @@ swn.cmds = {
 		var value = parseInt($that.val(), 10);
 		var modifier = value === 0 ? "" : swn.render.signed(swn.math.modifier(value));
 		
-		console.log(["attr",attr]);
-		console.log(["value",value]);
+		//console.log(["attr",attr]);
+		//console.log(["value",value]);
 
 		// show previous option in other selects
 		var prevValue = swn.attrs.data[attr];
@@ -186,6 +192,7 @@ swn.cmds = {
 			}
 		}
 	},
+	
 	attributesSelectComplete: function() {
 		console.log("swn.cmds.attributesSelectComplete");
 
@@ -197,12 +204,14 @@ swn.cmds = {
 		}
 		return true;
 	},
+	
 	attributeSelectAccept: function() {
 		console.log("swn.cmds.attributeSelectAccept");
 
 		$(".swn-cmd-attr-accept").addClass("swn-hidden");
 		swn.render.attributes();
 	},
+	
 	attributeIncr: function() {
 		console.log("swn.cmds.attributeIncr");
 		
@@ -236,10 +245,12 @@ swn.cmds = {
 		// render basics
 		$(".swn-cmd-background-accept").addClass("swn-hidden");
 		$(".swn-cmd-background").removeClass("swn-hidden");
-		swn.render.basics();
-		$(".swn-cmd-background-roll button:first-of-type").addClass("swn-hidden");
-		$(".swn-cmd-background-assign button:first-of-type").addClass("swn-hidden");
 		
+		swn.render.basics();
+		
+		// initialize display
+		$(".swn-cmd-background-roll").addClass("swn-hidden");
+		$(".swn-cmd-background-assign").addClass("swn-hidden");
 		$(".swn-background-rolled").removeClass("swn-hidden");
 		$(".swn-background-selected").addClass("swn-hidden");
 		$(".swn-cmd-background-assign").addClass("swn-hidden");
@@ -247,6 +258,7 @@ swn.cmds = {
 		$(".swn-cmd-skills").removeClass("swn-hidden");
 		$(".swn-cmd-skills-quick").removeClass("swn-hidden");
 	},
+	
 	backgroundAssign: function() {
 		console.log("swn.cmds.backgroundAssign");
 
@@ -256,12 +268,15 @@ swn.cmds = {
 		}
 
 		// initialize display
-		$(".swn-cmd-background-roll button:first-of-type").addClass("swn-disabled");
-		$(".swn-cmd-background-assign button:first-of-type").addClass("swn-disabled");
-				
+		$(".swn-cmd-background-roll").addClass("swn-hidden");
+		$(".swn-cmd-background-assign").addClass("swn-hidden");
+		//$(".swn-background-rolled").removeClass("swn-hidden");
+		$(".swn-background-selected").removeClass("swn-hidden");
+
 		// render background selector
 		swn.render.basicsSelect();
 	},
+	
 	backgroundSelectAccept: function() {
 		console.log("swn.cmds.backgroundSelectAccept");
 
@@ -300,7 +315,7 @@ swn.cmds = {
 		
 		var b = swn.background;
 		var quick = swn.backgrounds[b].skills.quick;
-		for (var i=0; i<quick.length; i++) {
+		for (var i = 0; i < quick.length; i++) {
 			var q = quick[i];
 			swn.skills.incr(q);
 		}
@@ -308,9 +323,11 @@ swn.cmds = {
 		// render skills
 		swn.render.skills();
 		
-		$(".swn-cmd-skills-quick button:first-of-type").addClass("swn-disabled");
-		$(".swn-cmd-skills-pick button:first-of-type").addClass("swn-disabled");
-		$(".swn-cmd-skills-roll button:first-of-type").addClass("swn-disabled");
+		$(".swn-cmd-skills-quick").addClass("swn-hidden");
+		$(".swn-cmd-skills-pick").addClass("swn-hidden");
+		$(".swn-cmd-skills-roll").addClass("swn-hidden");
+		
+		swn.skills.checkComplete();
 	},
 	
 	skillsPick: function() {
@@ -321,7 +338,7 @@ swn.cmds = {
 			return;
 		}
 		$(".swn-skills").removeClass("swn-hidden");
-		
+
 		var b = swn.background;
 		var f = swn.backgrounds[b].skills.free;
 		swn.log("skillsPick, f[" + f + "]")
@@ -401,11 +418,6 @@ swn.cmds = {
 		// render skills
 		swn.render.skills();
 		
-		var len = $(".cmd-quick-incr").not(".swn-hidden");
-		if (!len) {
-			$(".swn-cmd-skills-quick button:first-of-type").addClass("swn-disabled");
-			$(".swn-cmd-skills-pick button:first-of-type").addClass("swn-disabled");
-			$(".swn-cmd-skills-roll button:first-of-type").addClass("swn-disabled");
-		}
+		swn.skills.checkComplete();
 	}
 };
