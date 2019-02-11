@@ -75,14 +75,7 @@ swn.skills = {
 		var c = s.split(",");
 		var skill;
 		if (c.length > 1) {
-			swn.skills.quick++;
-			for (var i=0;i<c.length;i++) {
-				var skill = c[i];
-				var h = "<button class=\"cmd-quick-incr\" data-quick=\"" + swn.skills.quick + "\" data-skill=\"" + skill + "\">Incr " + skill + "</button>";	
-				$(".swn-cmd-skills-quick-choices").append(h);
-			}
-			$(".swn-cmd-skills-quick-choices").removeClass("swn-hidden");
-			$(".cmd-quick-incr").on("click", swn.cmds.skillIncr);		
+			swn.skills.incrArr(c);
 		} else if (skill = swn.skills.data[s]) {
 			swn.log(["skill.rating",skill.rating]);
 			skill.rating++;
@@ -112,8 +105,29 @@ swn.skills = {
 		}
 	},
 	
+	incrArr: function(c) {
+		console.log("swn.skills.incrArr, c[" + c + "]");
+
+		swn.skills.quick++;
+		var h = [];
+		h.push("<div class=\"swn-cmd-quick-section\">");
+		h.push("Quick " + swn.skills.quick + ":");
+		var lastSkill = "";
+		for (var i=0;i<c.length;i++) {
+			var skill = c[i];
+			if (skill != lastSkill) {
+				lastSkill = skill;
+				h.push("<button class=\"swn-cmd-quick-incr\" data-quick=\"" + swn.skills.quick + "\" data-skill=\"" + skill + "\">Incr " + skill + "</button>")
+			}			
+		}
+		h.push("</div>");
+		$(".swn-cmd-skills-quick-choices").append(h.join("\n"));
+		$(".swn-cmd-skills-quick-choices").removeClass("swn-hidden");
+		$(".swn-cmd-quick-incr").on("click", swn.cmds.skillIncr);		
+	},
+	
 	checkComplete: function() {
-		var len = $(".cmd-quick-incr").not(".swn-hidden").length;
+		var len = $(".swn-cmd-quick-incr").not(".swn-hidden").length;
 		console.log(["len", len]);
 		if (!len) {
 			$(".swn-cmd-skills-quick").addClass("swn-hidden");

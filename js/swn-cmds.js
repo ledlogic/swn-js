@@ -315,10 +315,7 @@ swn.cmds = {
 		
 		var b = swn.background;
 		var quick = swn.backgrounds[b].skills.quick;
-		for (var i = 0; i < quick.length; i++) {
-			var q = quick[i];
-			swn.skills.incr(q);
-		}
+		swn.skills.incrArr(quick);
 		
 		// render skills
 		swn.render.skills();
@@ -340,23 +337,24 @@ swn.cmds = {
 		$(".swn-skills").removeClass("swn-hidden");
 
 		var b = swn.background;
-		var f = swn.backgrounds[b].skills.free;
+		var f = swn.backgrounds[b].skills.free[0];
 		swn.log("skillsPick, f[" + f + "]")
-		swn.cmds.increaseSkill(f);
+		swn.skills.incr(f);
 		
-		/*var growth = swn.backgrounds[b].skills.growth;
-		for (var i=0; i<growth.length; i++) {
-			var g = growth[i];
-			swn.log("skillsPick, g[" + g + "]");
-			swn.cmds.increaseSkill(g);
-		}*/
+		var learning = swn.backgrounds[b].skills.learning;
+		console.log(["learning", learning]);
+		for (var i=0;i < 2; i++) {
+			swn.skills.incrArr(learning);
+		}
 		
 		// render skills
 		swn.render.skills();
 		
-		//$(".swn-cmd-skills-quick button:first-of-type").addClass("swn-disabled");
-		//$(".swn-cmd-skills-pick button:first-of-type").addClass("swn-disabled");
-		//$(".swn-cmd-skills-roll button:first-of-type").addClass("swn-disabled");
+		$(".swn-cmd-skills-quick").addClass("swn-hidden");
+		$(".swn-cmd-skills-pick").addClass("swn-hidden");
+		$(".swn-cmd-skills-roll").addClass("swn-hidden");
+
+		swn.skills.checkComplete();
 	},
 		
 	skillsRoll: function() {
@@ -368,7 +366,7 @@ swn.cmds = {
 		$(".swn-skills").removeClass("swn-hidden");
 		
 		var b = swn.background;
-		var f = swn.backgrounds[b].skills.free;
+		var f = swn.backgrounds[b].skills.free[0];
 		swn.log("skillsRoll, f[" + f + "]")
 		swn.skills.incr(f);
 		
@@ -395,9 +393,11 @@ swn.cmds = {
 		// render skills
 		swn.render.skills();
 		
-		//$(".swn-cmd-skills-quick > button:first-of-type").addClass("swn-disabled");
-		//$(".swn-cmd-skills-pick button:first-of-type").addClass("swn-disabled");
-		//$(".swn-cmd-skills-roll button:first-of-type").addClass("swn-disabled");
+		$(".swn-cmd-skills-quick").addClass("swn-hidden");
+		$(".swn-cmd-skills-pick").addClass("swn-hidden");
+		$(".swn-cmd-skills-roll").addClass("swn-hidden");
+		
+		swn.skills.checkComplete();
 	},
 	
 	skillIncr: function() {

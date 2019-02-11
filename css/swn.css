@@ -79,6 +79,9 @@ ol.upper-roman {
 	margin: 0px;
 	padding: 1px;
 }
+.swn-cmd-quick-section {
+	border: 1px solid #cccccc;
+}
 
 /* attributes */
 .swn-attr-table {
