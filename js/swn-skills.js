@@ -29,6 +29,9 @@ swn.skills = {
 		"perform" : {
 			name : "Perform"
 		},
+		"pilot" : {
+			name : "Pilot"
+		},
 		"program" : {
 			name : "Program"
 		},
@@ -137,5 +140,15 @@ swn.skills = {
 			$(".swn-cmd-skills-quick-choices").addClass("swn-hidden");
 			$(".swn-skills-selected").removeClass("swn-hidden");
 		}
+	},
+	
+	arrRemoveSkill: function(arr, skill) {
+		var ret = [];
+		for (var i = 0; i < arr.length; i++) {
+			if (arr[i] != skill) {
+				ret.push(arr[i]);
+			}
+		}
+		return ret;
 	}
 };

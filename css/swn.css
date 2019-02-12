@@ -108,6 +108,10 @@ ol.upper-roman {
 .swn-cmd-attr-accept {
 	float: right;
 }
+.swn-cmd-background-select {
+	min-width: 200px;
+	width: 50%;
+}
 
 /* basics */
 .swn-basics-table {

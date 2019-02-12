@@ -120,9 +120,14 @@ swn.cmds = {
 			swn.attrs.data[attr] = 14;
 		}
 		$(".swn-attributes-attribute-override").html("[" + attr + "]");
+		
+		swn.cmds.attributesComplete();
+		swn.render.attributes();
+	},
+	
+	attributesComplete: function() {
 		swn.attrs.overridden = true;
 		
-		swn.render.attributes();
 		$(".swn-cmd-background").removeClass("swn-hidden");
 		$(".swn-attributes-assigning").addClass("swn-hidden");
 		$(".swn-cmd-attributes-roll").addClass("swn-hidden");
@@ -209,6 +214,9 @@ swn.cmds = {
 		console.log("swn.cmds.attributeSelectAccept");
 
 		$(".swn-cmd-attr-accept").addClass("swn-hidden");
+		
+		swn.cmds.attributesComplete();
+		
 		swn.render.attributes();
 	},
 	
@@ -343,8 +351,9 @@ swn.cmds = {
 		
 		var learning = swn.backgrounds[b].skills.learning;
 		console.log(["learning", learning]);
-		for (var i=0;i < 2; i++) {
-			swn.skills.incrArr(learning);
+		var learningSansAnySkill = swn.skills.arrRemoveSkill(learning, "any skill");
+		for (var i = 0; i < 2; i++) {
+			swn.skills.incrArr(learningSansAnySkill);
 		}
 		
 		// render skills
