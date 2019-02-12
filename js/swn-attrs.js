@@ -25,14 +25,16 @@ swn.attrs = {
 		var c = s.split(",");
 		var skill;
 		if (c.length > 1) {
-			swn.attrs.quick++;
-			for (var i = 0; i < c.length; i++) {
-				var attr = c[i];
-				var h = "<button class=\"cmd-attr-quick-incr\" data-quick=\""
-						+ swn.attrs.quick + "\" data-attr=\"" + attr
-						+ "\" data-incr=\"" + incr + "\">Incr " + attr
-						+ "</button>";
-				$(".swn-cmd-attrs-quick-choices").append(h);
+			for (var j=0;j<incr;j++) {
+				swn.attrs.quick++;
+				for (var i = 0; i < c.length; i++) {
+					var attr = c[i];
+					var h = "<button class=\"cmd-attr-quick-incr\" data-quick=\""
+							+ swn.attrs.quick + "\" data-attr=\"" + attr
+							+ "\">Incr " + attr
+							+ "</button>";
+					$(".swn-cmd-attrs-quick-choices").append(h);
+				}
 			}
 			$(".swn-cmd-attrs-quick-choices").removeClass("swn-hidden");
 			$(".cmd-attr-quick-incr").on("click", swn.cmds.attrIncr);
