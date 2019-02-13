@@ -1,7 +1,6 @@
 /* SWN Render */
 
 swn.render = {
-		
 	/* general rendering methods */
 	signed: function(n) {
 		var ret = n;
@@ -15,24 +14,60 @@ swn.render = {
 	basics: function() {
 		var name = swn.name ? swn.name : "";
 		var backgroundName = swn.background ? (swn.backgrounds[swn.background].name ? swn.backgrounds[swn.background].name : "") : "";
+		var className = swn.classes.selClass ? (swn.classes.data[swn.classes.selClass].name ? swn.classes.data[swn.classes.selClass].name: "") : "";
 
 		var h=["<h3>Basics</h3>"];
 		h[h.length]="<table class=\"swn-basics-table\">";
 		h[h.length]="<tr>";
-		h[h.length]="<tr>";
 		h[h.length]="<td class=\"swn-attr-label\">Name</td>";
-		h[h.length]="<td class=\"swn-attr-score\">" + name + "</td>";
+		h[h.length]="<td class=\"swn-attr-score\">"
+		if (name) {
+			h[h.length]=name;
+		} else {
+			h[h.length]="<input type=\"text\" class=\"swn-enter-name\" />";
+			h[h.length]="<span class=\"swn-cmd swn-cmd-name-accept\"><button>Accept</button></span>";
+		}
+		h[h.length]="</td>";
 		h[h.length]="</tr>";
 		
 		if (backgroundName) {
+			h[h.length]="<tr>";
 			h[h.length]="<td class=\"swn-attr-label\">Background</td>";
 			h[h.length]="<td class=\"swn-attr-score\">" + backgroundName + "</td>";
 			h[h.length]="</tr>";
 		}
+		if (className) {
+			h[h.length]="<tr>";
+			h[h.length]="<td class=\"swn-attr-label\">Class</td>";
+			h[h.length]="<td class=\"swn-attr-score\">" + className + "</td>";
+			h[h.length]="</tr>";
+		} else {
+			var s = ["<select class=\"browser-default custom-select swn-cmd-class-select swn-hidden\">"];
+			s[s.length] = "<option value=\"0\">?</option>";
+			_.each(swn.classes.data, function(c, key) {
+				var cn = c.name;
+				s[s.length] = "<option value=\"" + key + "\">" + cn + "</option>";
+			});
+			s[s.length] = "</select>";
+			s[s.length]="<span class=\"swn-cmd swn-cmd-class-accept swn-disabled swn-hidden\"><button>Accept</button></span>";
+			var select = s.join("");
+			
+			h[h.length]="<tr>";
+			h[h.length]="<td class=\"swn-attr-label\">Class</td>";
+			h[h.length]="<td class=\"swn-attr-score\">" + select + "</td>";
+			h[h.length]="</tr>";
+		}
+
 		h[h.length]="</table>";
 		$(".swn-basics").html("").append(h.join(""));
 		$(".swn-basics").removeClass("swn-hidden");
-		$(".swn-cmd-attr-override").on("click", swn.cmds.attributeOverride);		
+		if (!name) {
+			$(".swn-cmd-name-accept").on("click", swn.cmds.nameSelect);
+		}
+		if (!className) {
+			$(".swn-cmd-class-select").on("change", swn.cmds.changeClass);
+			$(".swn-cmd-class-accept button:first-of-type").on("click", swn.cmds.acceptClass);
+		}
 	},
 	
 	basicsSelect: function() {
@@ -58,7 +93,8 @@ swn.render = {
 		$(".swn-basics").html("").append(h.join(""));
 		$(".swn-basics").removeClass("swn-hidden");
 		
-		$(".swn-cmd-background-accept").on("click", swn.cmds.backgroundSelectAccept);		
+		$(".swn-cmd-background-accept").on("click", swn.cmds.backgroundSelectAccept);
+		$(".swn-cmd-class-select").on("click", swn.cmds.classSelect);
 	},
 	
 	/* attribute rendering methods */

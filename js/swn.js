@@ -5,7 +5,6 @@ $(document).ready(function() {
 /* SWN App singleton */
 
 var swn = {
-
 	/* background: swn background */
 	background : null,
 
@@ -23,5 +22,6 @@ var swn = {
 		swn.cmds.init();
 		swn.attrs.init();
 		swn.skills.init();
+		swn.classes.init();
 	}
 };

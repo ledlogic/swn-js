@@ -37,7 +37,7 @@ swn.math = {
 
 	background : function() {
 		var len = _.size(swn.backgrounds);
-		var b = swn.math.die(1, len, 0);
+		var b = swn.math.die(1, len, -1);
 		var keys = _.keys(swn.backgrounds);
 		var key = keys[b];
 		return key;

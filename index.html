@@ -32,10 +32,18 @@
 			    			<li class="swn-cmd swn-cmd-roll-new">
 		    					<button class="swn-action">Roll new WE name</button>
 			    			</li>
+			    			<li class="swn-cmd swn-cmd-enter">
+		    					<button class="swn-action">Enter custom name</button>
+			    			</li>
 			    		</ol>
 	    				<div class="swn-name-rolling swn-cmd-description swn-hidden">Rolled name
 	    					<span class="swn-name"></span></div>
+	    					
+	    				<div class="swn-name-entering swn-cmd-description swn-hidden">Entered name
+	    					<span class="swn-name"></span></div>
+	    						    					
 		    		</li>
+		    		
 		    		<li class="swn-cmd-attributes swn-hidden">Select attributes
 			    		<ol class="upper-latin">
 			    			<li class="swn-cmd swn-cmd-attributes-roll">
@@ -51,6 +59,7 @@
 			    		</ol>
 	    				<div class="swn-attributes-assigned swn-hidden swn-cmd-description">Assigned attributes</div>
 		    		</li>
+		    		
 		    		<li class="swn-cmd-background swn-hidden">Select background
 			    		<ol class="upper-latin">
 			    			<li class="swn-cmd swn-cmd-background-roll">
@@ -68,6 +77,7 @@
 	    				<div class="swn-background-selected swn-hidden swn-cmd-description">Selected background
 	    					<span class="swn-background"></span></div>
 			    	</li>
+			    	
 		    		<li class="swn-cmd-skills swn-hidden">Select skills
 			    		<ol class="upper-latin">
 			    			<li class="swn-cmd swn-cmd-skills-quick">
@@ -84,7 +94,12 @@
 	    				</div>
 	    				<div class="swn-skills-selected swn-hidden swn-cmd-description">Selected skills</div>
 			    	</li>
-		    	</ol>		    	
+			    	
+		    		<li class="swn-cmd-class-pick swn-hidden">Select Class
+	    				<div class="swn-classes-selected swn-hidden swn-cmd-description">Selected class
+	    					<span class="swn-class"></span></div>
+			    	</li>
+		    	</ol>
 		    </div>
 	    	<main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">
 			    <h1 class="bd-title">SWN Character Sheet</h1>
@@ -104,12 +119,13 @@
     <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
     
     <!-- SWN JS -->
-    <script src="js/swn.js"></script>    
-    <script src="js/swn-attrs.js"></script>    
-    <script src="js/swn-backgrounds.js"></script>    
-    <script src="js/swn-cmds.js"></script>    
-    <script src="js/swn-math.js"></script>    
-    <script src="js/swn-render.js"></script>    
-    <script src="js/swn-skills.js"></script>    
-  </body>
+	<script src="js/swn.js"></script>
+	<script src="js/swn-attrs.js"></script>
+	<script src="js/swn-backgrounds.js"></script>
+	<script src="js/swn-cmds.js"></script>
+	<script src="js/swn-classes.js"></script>
+	<script src="js/swn-math.js"></script>
+	<script src="js/swn-render.js"></script>
+	<script src="js/swn-skills.js"></script>
+</body>
 </html>

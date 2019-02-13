@@ -1,13 +1,12 @@
 /* SWN Commands */
 
 swn.cmds = {
-		
 	init : function() {
 		console.log("swn.cmds.init");
-
 		$(".swn-cmd-reset").on("click", swn.cmds.reset);
-		$(".swn-cmd-roll-classic button:first-of-type").on("click", swn.cmds.classicName);
-		$(".swn-cmd-roll-new button:first-of-type").on("click", swn.cmds.newName);
+		$(".swn-cmd-roll-classic button:first-of-type").on("click", swn.cmds.nameClassic);
+		$(".swn-cmd-roll-new button:first-of-type").on("click", swn.cmds.nameNew);
+		$(".swn-cmd-enter button:first-of-type").on("click", swn.cmds.nameEnter);
 		$(".swn-cmd-attributes-roll button:first-of-type").on("click", swn.cmds.attributesRoll);
 		$(".swn-cmd-attributes-assign button:first-of-type").on("click", swn.cmds.attributesAssign);
 		$(".swn-cmd-background-roll button:first-of-type").on("click", swn.cmds.backgroundRoll);
@@ -24,8 +23,8 @@ swn.cmds = {
 
 	/* name commands */
 	
-	classicName: function() {
-		console.log("swn.cmds.classicName");
+	nameClassic: function() {
+		console.log("swn.cmds.nameClassic");
 
 		var $that = $(this);
 		if ($that.hasClass("swn-disabled")) {
@@ -35,6 +34,7 @@ swn.cmds = {
 		// initialize display
 		$(".swn-cmd-roll-classic button:first-of-type").addClass("swn-disabled");
 		$(".swn-cmd-roll-new button:first-of-type").addClass("swn-disabled");
+		$(".swn-cmd-enter button:first-of-type").addClass("swn-disabled");
 		$(".swn-name-rolling").removeClass("swn-hidden");
 		
 		// gen name
@@ -48,10 +48,11 @@ swn.cmds = {
 		$(".swn-cmd-attributes").removeClass("swn-hidden");
 		$(".swn-cmd-roll-classic").addClass("swn-hidden");
 		$(".swn-cmd-roll-new").addClass("swn-hidden");
+		$(".swn-cmd-enter").addClass("swn-hidden");
 	},
 	
-	newName: function() {
-		console.log("swn.cmds.newName");
+	nameNew: function() {
+		console.log("swn.cmds.nameNew");
 		
 		var $that = $(this);
 		if ($that.hasClass("swn-disabled")) {
@@ -61,6 +62,7 @@ swn.cmds = {
 		// initialize display
 		$(".swn-cmd-roll-classic button:first-of-type").addClass("swn-disabled");
 		$(".swn-cmd-roll-new button:first-of-type").addClass("swn-disabled");
+		$(".swn-cmd-enter button:first-of-type").addClass("swn-disabled");
 		$(".swn-name-rolling").removeClass("swn-hidden");
 		
 		// gen name
@@ -74,6 +76,42 @@ swn.cmds = {
 		$(".swn-cmd-attributes").removeClass("swn-hidden");
 		$(".swn-cmd-roll-classic").addClass("swn-hidden");
 		$(".swn-cmd-roll-new").addClass("swn-hidden");
+		$(".swn-cmd-enter").addClass("swn-hidden");
+	},
+	
+	nameEnter: function() {
+		console.log("swn.cmds.nameEnter");
+		
+		var $that = $(this);
+		if ($that.hasClass("swn-disabled")) {
+			return;
+		}
+
+		// initialize display
+		$(".swn-cmd-roll-classic button:first-of-type").addClass("swn-disabled");
+		$(".swn-cmd-roll-new button:first-of-type").addClass("swn-disabled");
+		$(".swn-cmd-enter button:first-of-type").addClass("swn-disabled");
+		$(".swn-name-entering").removeClass("swn-hidden");
+		
+		// render basics
+		swn.render.basics();
+
+		$(".swn-cmd-attributes").removeClass("swn-hidden");
+		$(".swn-cmd-roll-classic").addClass("swn-hidden");
+		$(".swn-cmd-roll-new").addClass("swn-hidden");
+		$(".swn-cmd-enter").addClass("swn-hidden");
+	},
+	
+	nameSelect: function() {
+		console.log("swn.cmds.nameSelect");
+
+		// gen name
+		var name = $(".swn-enter-name").val();
+		swn.name = name;
+		$(".swn-name").html("[" + name + "]")		
+		
+		// render basics
+		swn.render.basics();
 	},
 		
 	/* attribute commands */
@@ -126,6 +164,8 @@ swn.cmds = {
 	},
 	
 	attributesComplete: function() {
+		console.log("swn.cmds.attributesComplete");
+		
 		swn.attrs.overridden = true;
 		
 		$(".swn-cmd-background").removeClass("swn-hidden");
@@ -368,6 +408,7 @@ swn.cmds = {
 		
 	skillsRoll: function() {
 		console.log("swn.cmds.skillsRoll");
+		
 		var $that = $(this);
 		if ($that.hasClass("swn-disabled")) {
 			return;
@@ -384,14 +425,14 @@ swn.cmds = {
 			switch (p) {
 				case 1:
 					var growth = swn.backgrounds[b].skills.growth;
-					var iGrowth = swn.math.die(1, growth.length, 0);
+					var iGrowth = swn.math.die(1, growth.length, -1);
 					swn.log("skillsRoll, iGrowth[" + iGrowth + "]")
 					var g = growth[iGrowth];
 					swn.skills.incr(g);
 					break;
 				case 2:
 					var learning = swn.backgrounds[b].skills.learning;
-					var iLearning = swn.math.die(1, learning.length, 0);
+					var iLearning = swn.math.die(1, learning.length, -1);
 					swn.log("skillsRoll, iLearning[" + iLearning + "]")
 					var g = learning[iLearning];
 					swn.skills.incr(g);
@@ -411,6 +452,7 @@ swn.cmds = {
 	
 	skillIncr: function() {
 		console.log("swn.cmds.skillIncr");
+		
 		var $that = $(this);
 		if ($that.hasClass("swn-disabled")) {
 			return;
@@ -428,5 +470,44 @@ swn.cmds = {
 		swn.render.skills();
 		
 		swn.skills.checkComplete();
+	},
+	
+	/* class commands */
+	
+	changeClass: function() {
+		console.log("swn.cmds.changeClass");
+		
+		var c = $(".swn-cmd-class-select").val();
+		console.log("c[" + c + "]");
+		
+		var $accept = $("swn-cmd-class-accept");
+		if (c) {
+			$accept.addClass("swn-disabled");
+		} else {
+			$accept.removeClass("swn-disabled");
+		}
+	},
+	
+	acceptClass: function() {
+		console.log("swn.cmds.acceptClass");
+		
+		var $that = $(this);
+		if ($that.hasClass("swn-disabled")) {
+			return;
+		}
+		
+		var c = $(".swn-cmd-class-select").val();
+		console.log("c[" + c + "]");
+		swn.classes.selClass = c;
+		
+		var name = swn.classes.data[c].name;
+		$(".swn-class").html("[" + name + "]");
+		$(".swn-classes-selected").removeClass("swn-hidden");
+
+		// render basics
+		swn.render.basics();
+		
+		swn.classes.complete();
+		
 	}
 };

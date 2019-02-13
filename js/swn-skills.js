@@ -74,37 +74,37 @@ swn.skills = {
 	
 	incr: function(s) {
 		console.log("swn.skills.incr, s[" + s + "]");
-		
+
 		var c = s.split(",");
 		var skill;
 		if (c.length > 1) {
 			swn.skills.incrArr(c);
 		} else if (skill = swn.skills.data[s]) {
-			swn.log(["skill.rating",skill.rating]);
+			swn.log([ "skill.rating", skill.rating ]);
 			skill.rating++;
-			swn.log(["skill.rating",skill.rating]);
+			swn.log([ "skill.rating", skill.rating ]);
 		} else {
 			// not exact skill
-			swn.log(["not exact skill",s]);
+			swn.log([ "not exact skill", s ]);
 			switch (s) {
-			    case "any combat":
-			    	swn.skills.incr("stab,shoot,punch");
-			    	break;
-			    case "any skill":
-			    	swn.skills.incr("stab,shoot,punch");
-			    	break;
-			    case "+1 any stat":
-			    	swn.attrs.incr("str,dex,con,int,wis,cha", 1);
-			    	break;
-			    case "+2 physical":
-			    	swn.attrs.incr("str,dex,con", 2);
-			    	break;
-			    case "+2 mental":
-			    	swn.attrs.incr("int,wis,cha", 2);
-			    	break;
-			    default:
-			    	swn.log("Unknown skill");
-			}			
+			case "any combat":
+				swn.skills.incr("stab,shoot,punch");
+				break;
+			case "any skill":
+				swn.skills.incr("stab,shoot,punch");
+				break;
+			case "+1 any stat":
+				swn.attrs.incr("str,dex,con,int,wis,cha", 1);
+				break;
+			case "+2 physical":
+				swn.attrs.incr("str,dex,con", 2);
+				break;
+			case "+2 mental":
+				swn.attrs.incr("int,wis,cha", 2);
+				break;
+			default:
+				swn.log("Unknown skill");
+			}
 		}
 	},
 	
@@ -139,6 +139,12 @@ swn.skills = {
 			
 			$(".swn-cmd-skills-quick-choices").addClass("swn-hidden");
 			$(".swn-skills-selected").removeClass("swn-hidden");
+			
+			$(".swn-cmd-classes").removeClass("swn-hidden");
+			$(".swn-cmd-class-select").removeClass("swn-hidden");
+			$(".swn-cmd-class-accept").removeClass("swn-hidden");
+			
+			$(".swn-cmd-class-pick ").removeClass("swn-hidden");			
 		}
 	},
 	
